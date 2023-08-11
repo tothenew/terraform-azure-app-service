@@ -24,12 +24,8 @@ This Terraform configuration deploys an Azure Resource Group with specified attr
 |---------------------|--------------------------------|----------|---------|----------|
 | resource_group_name | Name of the Resource Group     | string   | "app-service-rg"   | yes      |
 | location            | Location for the Resource Group| string   | "EAST US 2"    | yes      |
-| default_tags        | Default tags for resources     | map      |  default = 
-    "Scope" : "database"
-    "CreatedBy" : "Terraform" | yes      |
-| common_tags         | Common tags for resources      | map      |  default = 
-    Project    = "Azure_database",
-    Managed-By = "TTN"| yes      |
+| default_tags        | Default tags for resources     | map      |         | yes      |
+| common_tags         | Common tags for resources      | map      |         | yes      |
 
 
 ### Virtual Network and Subnets
