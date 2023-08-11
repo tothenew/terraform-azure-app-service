@@ -1,4 +1,4 @@
-# terraform-aws-template
+# terraform-azure-app-service
 
 [![Lint Status](https://github.com/tothenew/terraform-aws-template/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-aws-template/actions)
 [![LICENSE](https://img.shields.io/github/license/tothenew/terraform-aws-template)](https://github.com/tothenew/terraform-aws-template/blob/master/LICENSE)
@@ -87,7 +87,7 @@ It will deploy an Azure Virtual Network with multiple subnets, each with specifi
 | os_type                                    | OS type of the Web App (Linux/Windows)       | string         |         | yes      |
 | sku_name                                   | SKU name of the App Service Plan             | string         |         | yes      |
 | linux_web_app_name                         | Name of the Linux Web App                    | string         |         | yes      |
-| public_network_access_enabled               | Whether public network access is enabled     | bool           | false   | yes      |
+| public_network_access_enabled               | Whether public network access is enabled     | bool           | true   | yes      |
 | always_on                                  | Whether the app should always be on          | bool           | false   | no       |
 | container_registry_use_managed_identity    | Use managed identity for container registry  | bool           | false   | no       |
 | load_balancing_mode                        | Load balancing mode of the app               | string         |         | no       |
