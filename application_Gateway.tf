@@ -7,7 +7,7 @@ resource "azurerm_public_ip" "public_ip" {
   sku                 = var.public_ip_sku
 
   tags = merge(var.default_tags, var.common_tags , {
-    "Name"        = "${var.name_prefix}",
+    "Name"        = "${var.project_name_prefix}",
   })
 }
 
@@ -85,7 +85,7 @@ request_routing_rule {
     priority                   = local.priority  
   }
 
-tags = merge(var.default_tags, var.common_tags , {
-    "Name"        = "${var.name_prefix}",
+  tags = merge(var.default_tags, var.common_tags , {
+    "Name"        = "${var.project_name_prefix}",
   })
 }
