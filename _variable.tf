@@ -85,29 +85,6 @@ variable "public_network_access_enabled" {
   default = true
 }
 
-variable "enable_ip_restriction" {
-  type = bool
-  default = false
-}
-
-
-variable "ip_restriction" {
-  description = "Cross-Origin Resource Sharing (CORS) settings"
-  type = object({
-    action = string
-    priority = number 
-    ip_address = string
-    virtual_network_subnet_id = string
-  })
-
-  default = {
-      
-    action = "allow"
-    priority = 100 
-    ip_address = "10.0.1.0/24"
-    virtual_network_subnet_id = null
-}  
-}
 
 variable "site_config" {
   description = "site settings for App service"
