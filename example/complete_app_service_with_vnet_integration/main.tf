@@ -54,33 +54,33 @@ module "Azure_App_Service" {
         minimum_tls_version             = "1.2"  
         remote_debugging_enabled        = false  
         scm_minimum_tls_version         = "1.2"  
-        scm_use_main_ip_restriction     = false                
+        scm_use_main_ip_restriction     = false  
+        vnet_route_all_enabled          = true             
         websockets_enabled              = false
     }
 
     enable_vnet_integration      = true
-    subnet_id                   = lookup(module.vnet.subnet_ids,keys(output.subnet_ids)[0], null)
+    subnet_id                    = module.vnet_main.subnet_ids["app-subnet"]
 
     application_insights_enabled = true
-   
-#    change the value of application_insights_id if you already have a application insights
+
+#    provide the application_insights_id  if you already have a application insights
 #    if not then this module will create a application insights by providing a application insights name
 
     # application_insights_id    = null
-    app_insights_name            = "otkpocshared"
+    app_insights_name            = "webAppInisghts"
     
 
-  # The Backup feature in Azure App Service easily create app backups manually or on a schedule.
+  # enable backup for App  Service (Bydefault  it is false)
   # You can configure the backups to be retained up to an indefinite amount of time.
-  # Azure storage account and container in the same subscription as the app that you want to back up. 
   # This module creates a Storage Container to keep the all backup items. 
     enable_backup        = true
-    storage_account_name = "stdiagfortesting1"
+    storage_account_name = "storageaccount101"
     backup_settings = {
        enabled                  = true
        name                     = "DefaultBackup"
        frequency_interval       = 1
        frequency_unit           = "Day"
        retention_period_in_days = 30
-    }   
+    } 
 }

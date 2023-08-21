@@ -1,7 +1,7 @@
 # terraform-azure-app-service
 
-[![Lint Status](https://github.com/tothenew/terraform-aws-template/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-aws-template/actions)
-[![LICENSE](https://img.shields.io/github/license/tothenew/terraform-aws-template)](https://github.com/tothenew/terraform-aws-template/blob/master/LICENSE)
+[![Lint Status](https://github.com/tothenew/terraform-azure-app-service/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-azure-app-service/actions)
+[![LICENSE](https://img.shields.io/github/license/tothenew/terraform-azure-app-service)](https://github.com/tothenew/terraform-azure-app-service/blob/master/LICENSE)
 
 This Terraform will deploy a Linux Web App and establishes a virtual network connection to the web app through service endpoint so that the web app is only accessable through application gateway.
 
@@ -91,9 +91,9 @@ This Terraform configuration deploys an Azure Application Insights resource.
 | disable_ip_masking           | Should IP masking be enabled for this Application Insights resource. | bool     | false                 | no       |
 
 
-## Creating Azure Storage Backup
+## Azure Storage Backup
 
-This Terraform configuration deploys an Azure Storage resources for backup purposes.
+This Terraform configuration deploys an Azure Storage resources for backup purposes .
 
 ### Inputs
 
@@ -110,7 +110,7 @@ This Terraform configuration deploys an Azure Storage resources for backup purpo
 
 
 
-## Creating Application Gateway with Backend Pool
+## Application Gateway with Backend Pool 
 
 This Terraform configuration deploys an Azure Application Gateway with a backend pool that includes a Linux Web App.
 

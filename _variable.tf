@@ -173,10 +173,7 @@ variable "app_settings" {
   default     = {}
 }
 
-variable "ip_restriction_action" {
-    description = "IP restriction for  of App Settings."
-    default     = "allow" 
-}
+
 
 #####################################################################################################
 ####                            Application Gateway                                              ####
@@ -184,7 +181,7 @@ variable "ip_restriction_action" {
 
 variable "create_application_gateway" {
   type    = bool
-  default = true
+  default = false
 }
 
 variable "public_ip_name" {
@@ -362,7 +359,7 @@ variable "storage_acc_resource_group_name" {
 
 variable "storage_account_name" {
   description = "The name of the azure storage account"
-  default     = "sctttt11"
+  default     = "storageacc11"
 }
 
 variable "password_end_date" {

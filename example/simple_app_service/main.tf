@@ -19,7 +19,8 @@ module "Azure_App_Service" {
         minimum_tls_version             = "1.2"  
         remote_debugging_enabled        = false  
         scm_minimum_tls_version         = "1.2"  
-        scm_use_main_ip_restriction     = false                
+        scm_use_main_ip_restriction     = false  
+        vnet_route_all_enabled          = true             
         websockets_enabled              = false
-  }
+    }
 }
