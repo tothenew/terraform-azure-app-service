@@ -25,11 +25,6 @@ module "vnet_main" {
       delegation_name =  "Microsoft.Web/serverFarms"
       delegation_actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
     }   
-
-    "app_gateway_subnet" = {
-    address_prefixes = ["10.0.2.0/24"]
-    associate_with_route_table = false    
-    } 
   }
 }
 

@@ -28,7 +28,8 @@ module "vnet_main" {
 
     "app_gateway_subnet" = {
     address_prefixes = ["10.0.2.0/24"]
-    associate_with_route_table = false    
+    associate_with_route_table = false  
+    service_endpoints = ["Microsoft.Web"] 
     } 
   }
 }
