@@ -2,30 +2,11 @@ provider "azurerm" {
   features {}
 }
 
-
-module "vnet" {
-  source  = "git::https://github.com/tothenew/terraform-azure-app-service.git?ref=azure-app-service-v1"
-
-  create_resource_group  = false
-  resource_group_name    = "vnet-rg"
-  vnetwork_name          = "vnet-shared-hub-westeurope-002"
-  location               = "westeurope"
-  vnet_address_space     = ["10.2.0.0/16"]
-
-  subnets = {
-    web_subnet = {
-      subnet_name           = "webapp-subnet"
-      subnet_address_prefix = ["10.2.1.0/24"]
-      delegation = {
-        name = "testdelegation"
-        service_delegation = {
-          name    = "Microsoft.Web/serverFarms"
-          actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
-        }
-      }
-    }
-  }
-}
+## Users can create the resource group here 
+resource "azurerm_resource_group" "main" {
+  name     = "my-vnet-rg"
+  location = "eastus" 
+} 
 
 module "vnet_main" {
   source = "git::https://github.com/DeepakBoora/terraform-azure-vnet-setup"
@@ -78,7 +59,7 @@ module "Azure_App_Service" {
     }
 
     enable_vnet_integration      = true
-    subnet_id                    = element(module.vnet.subnet_ids, 0)
+    subnet_id                   = lookup(module.vnet.subnet_ids,keys(output.subnet_ids)[0], null)
 
     application_insights_enabled = true
    
