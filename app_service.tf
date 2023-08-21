@@ -40,7 +40,7 @@ resource "azurerm_linux_web_app" "web_App" {
   } 
 
 dynamic "ip_restriction" {
-  for_each = var.ip_restriction ? 1 : 0
+  for_each = var.enable_ip_restriction ? 1 : 0
     content  {
       action                    = var.ip_restriction.action
       priority                  = var.ip_restriction.priority
@@ -149,6 +149,16 @@ resource "azurerm_windows_web_app" "web_App" {
       }
     }
   } 
+
+dynamic "ip_restriction" {
+  for_each = var.enable_ip_restriction ? 1 : 0
+    content  {
+      action                    = var.ip_restriction.action
+      priority                  = var.ip_restriction.priority
+      virtual_network_subnet_id = var.app_gateway_subnet_id
+  }
+}
+
 
   auth_settings {
     enabled                        = var.enable_auth_settings

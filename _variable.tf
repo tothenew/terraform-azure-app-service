@@ -85,10 +85,10 @@ variable "public_network_access_enabled" {
   default = true
 }
 
-# variable "ip_restriction" {
-#   type = bool
-#   default = false
-# }
+variable "enable_ip_restriction" {
+  type = bool
+  default = false
+}
 
 
 variable "ip_restriction" {
