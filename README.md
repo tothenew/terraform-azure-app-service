@@ -14,6 +14,20 @@ Before you begin, ensure you have the following requirements met:
 2. Azure CLI installed and configured with appropriate access rights. You can install the Azure CLI from [https://docs.microsoft.com/en-us/cli/azure/install-azure-cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 
 
+## Resources
+
+| Name                                     | Description                                                            | Type              |
+|------------------------------------------|------------------------------------------------------------------------|-------------------|
+| azurerm_resource_group | Azure Resource Group         | azurerm           |
+| azurerm_service_plan                      | Azure App Service Plan.                                                | azurerm           |
+| azurerm_linux_web_app                    | Azure Linux Web App.                                                   | azurerm           |
+| azurerm_app_service_virtual_network_swift_connection | Swift connection settings for VNet integration.          | azurerm           |
+| azurerm_application_insights                      | Azure Application Insights                                                | azurerm           |
+| azurerm_storage_container                   | Azure Storage resources for backup purposes.                                                | azurerm           |
+| azurerm_public_ip | Azure public ip for applicaiton gateway          | azurerm           |
+| azurerm_application_gateway | Azure applicaiton gateway          | azurerm           |
+
+
 ### Azure Resource Group
 
 This Terraform configuration deploys an Azure Resource Group with specified attributes.
@@ -28,76 +42,77 @@ This Terraform configuration deploys an Azure Resource Group with specified attr
 | common_tags         | Common tags for resources      | map      |         | yes      |
 
 
-### Virtual Network and Subnets
+## Azure web App
 
-It will deploy an Azure Virtual Network with multiple subnets, each with specific delegations and service endpoints.
-
-### Inputs
-
-#### Virtual Network Inputs
-
-| Name                 | Description                      | Type     | Default | Required |
-|----------------------|----------------------------------|----------|---------|----------|
-| vnet-name            | Name of the Virtual Network      | string   | "app_service_vnet" | yes      |
-| location             | Location of the Virtual Network  | string   | EAST US 2"        | yes      |
-| vnetcidr             | Address space of the VNet        | list     | "10.0.0.0/16"      | yes      |
-| default_tags         | Default tags for resources       | map      |         | yes      |
-| common_tags          | Common tags for resources        | map      |         | yes      |
-| name_prefix          | Prefix for naming resources      | string   |         | yes      |
-
-#### Application Gateway Subnet Inputs
-
-| Name                                 | Description                            | Type     | Default | Required |
-|--------------------------------------|----------------------------------------|----------|---------|----------|
-| app_gateway_subnet_name              | Name of the Application Gateway subnet | string   | "my-app-gateway-subnet"       | yes      |
-| app_gateway_address_prefixe          | Address prefixes for the subnet        | list     |  ["10.0.1.0/24"]        | yes      |
-| app_gateway_subnet_service_endpoint  | Service endpoints for the subnet       | list     |         | yes      |
-
-#### App Service Subnet Inputs
-
-| Name                             | Description                        | Type     | Default | Required |
-|----------------------------------|------------------------------------|----------|---------|----------|
-| app_service_subnet_name          | Name of the App Service subnet     | string   |   "my-app-service-subnet"       | yes      |
-| app_service_address_prefixe      | Address prefixes for the subnet    | list     |  ["10.0.2.0/24"]       | yes      |
-| app_subnet_delegation_name       | Name of the delegation             | string   |         | yes      |
-| app_subnet_service_delegation_actions | Actions for service delegation  | list     |         | yes      |
-| app_subnet_service_delegation_name | Name of the service delegation   | string   |         | yes      |
-
-#### Database Subnet Inputs
-
-| Name                       | Description                    | Type     | Default | Required |
-|----------------------------|--------------------------------|----------|---------|----------|
-| db_subnet_name             | Name of the Database subnet    | string   |   "my-db-subnet"      | yes      |
-| db_subnet_address_prefixe  | Address prefixes for the subnet| list     |  ["10.0.3.0/24"]      | yes      |
-| db_subnet_service_endpoint | Service endpoints for the subnet| list     |         | yes      |
-| db_subnet_delegation_name  | Name of the delegation         | string   |         | yes      |
-| db_subnet_service_delegation_actions | Actions for service delegation | list |         | yes      |
-| db_subnet_service_delegation_name | Name of the service delegation | string |       | yes    |
-
-
-### Linux web App
+This Terraform configuration deploys an Azure Web App .
 
 ### Inputs
 
-| Name                                       | Description                                  | Type           | Default | Required |
-|--------------------------------------------|----------------------------------------------|----------------|---------|----------|
-| app_service_plan_name                      | Name of the App Service Plan                 | string         |  "myAppServicePlan"       | yes      |
-| location                                   | Location where resources will be deployed    | string         |          | yes      |
-| os_type                                    | OS type of the Web App (Linux/Windows)       | string         | "Linux"        | yes      |
-| sku_name                                   | SKU name of the App Service Plan             | string         |   "P1v2"      | yes      |
-| linux_web_app_name                         | Name of the Linux Web App                    | string         | "myApp000110"        | yes      |
-| public_network_access_enabled               | Whether public network access is enabled     | bool           | true   | yes      |
-| always_on                                  | Whether the app should always be on          | bool           | false   | no       |
-| container_registry_use_managed_identity    | Use managed identity for container registry  | bool           | false   | no       |
-| load_balancing_mode                        | Load balancing mode of the app               | string         | "LeastRequests"        | no       |
-| ip_restriction_action                      | IP restriction action                        | string         |  "Allow"       | no       |
-  default = 200
-| ip_restriction_priority                    | IP restriction priority                      | int            |         | no       |
+| Name                                     | Description                                                            | Type      | Default               | Required |
+|------------------------------------------|------------------------------------------------------------------------|-----------|-----------------------|----------|
+| app_service_plan_name                    | The name of the Azure App Service Plan.                               | string    | n/a                   | yes      |
+| resource_group_name                      | The name of the Azure Resource Group where resources will be deployed.| string    | n/a                   | yes      |
+| location                                 | The Azure region where resources will be deployed.                     | string    | n/a                   | yes      |
+| os_type                                  | The operating system for the web app (Linux or Windows).               | string    | n/a                   | yes      |
+| sku_name                                 | The SKU name for the App Service Plan.                                 | string    | n/a                   | yes      |
+| public_network_access_enabled             | Specifies whether public network access is enabled.                    | bool      | n/a                   | yes      |
+| app_settings                             | Additional application settings for the web app.                        | map       | n/a                   | yes      |
+| site_config                              | Configuration settings for the web app.                                | map       | n/a                   | yes      |
+| cors                                     | Cross-Origin Resource Sharing (CORS) settings for the web app.         | list(map) | n/a                   | yes      |
+| ip_restriction                           | IP restriction settings for the web app.                                | object    | n/a                   | yes      |
+| app_gateway_subnet_id                    | The subnet ID of the Application Gateway for IP restrictions.           | string    | n/a                   | yes      |
+| enable_auth_settings                     | Specifies whether authentication settings are enabled.                 | bool      | n/a                   | yes      |
+| default_auth_provider                    | The default authentication provider.                                    | string    | n/a                   | yes      |
+| active_directory_auth_setttings           | Active Directory authentication settings.                               | map       | n/a                   | yes      |
+| unauthenticated_client_action            | Action to take for unauthenticated clients.                             | string    | n/a                   | yes      |
+| token_store_enabled                      | Specifies whether token store is enabled.                               | bool      | n/a                   | yes      |
+| connection_strings                       | Connection strings for the web app.                                     | list(map) | n/a                   | yes      |
+| enable_backup                            | Specifies whether backup settings are enabled.                          | bool      | n/a                   | yes      |
+| backup_settings                          | Configuration settings for backups.                                     | map       | n/a                   | yes      |
+| storage_mounts                           | Storage mounts for the web app.                                         | list(map) | n/a                   | yes      |
+| identity                                 | Identity type for the web app.                                          | string    | n/a                   | yes      |
+| enable_vnet_integration                  | Specifies whether VNet integration is enabled.                          | bool      | n/a                   | yes      |
+| subnet_id                                | The subnet ID for VNet integration.                                     | string    | n
+
+## Application Insights
+
+This Terraform configuration deploys an Azure Application Insights resource.
+
+### Inputs
+
+| Name                       | Description                                                           | Type     | Default               | Required |
+|----------------------------|-----------------------------------------------------------------------|----------|-----------------------|----------|
+| application_insights_enabled | Specifies whether to create an Application Insights resource.         | bool     | n/a                   | yes      |
+| application_insights_id      | The ID (name) of an existing Application Insights resource to use.    | string   | null                  | no       |
+| app_insights_name            | The name of the Application Insights resource.                        | string   | n/a                   | yes      |
+| location                     | The Azure region where the Application Insights resource should be created. | string   | n/a                   | yes      |
+| application_insights_type    | The type of application to monitor.                                   | string   | "web"                 | no       |
+| retention_in_days            | The number of days to retain telemetry data.                          | number   | 30                    | no       |
+| disable_ip_masking           | Should IP masking be enabled for this Application Insights resource. | bool     | false                 | no       |
+
+
+## Creating Azure Storage Backup
+
+This Terraform configuration deploys an Azure Storage resources for backup purposes.
+
+### Inputs
+
+| Name                          | Description                                                        | Type    | Default               | Required |
+|-------------------------------|--------------------------------------------------------------------|---------|-----------------------|----------|
+| enable_backup                 | Specifies whether to enable the backup functionality.             | bool    | n/a                   | yes      |
+| storage_container_name        | The name of the storage container for backup.                      | string  | "appservice-backup"   | no       |
+| container_access_type         | The type of access to the storage container.                        | string  | n/a                   | yes      |
+| password_end_date             | The end date for password rotation.                                | string  | n/a                   | yes      |
+| password_rotation_in_years    | The number of years for password rotation.                         | number  | n/a                   | yes      |
+| https_only                    | Specifies whether to enforce HTTPS for the SAS token.              | bool    | n/a                   | yes      |
+| permissions                   | Permissions for the SAS token.                                    | object  | n/a                   | yes      |
+| blob_container_sas            | Additional configuration for the SAS token.                        | object  | n/a                   | yes      |
+
 
 
 ## Creating Application Gateway with Backend Pool
 
-It will deploy an Azure Application Gateway with a backend pool that includes a Linux Web App.
+This Terraform configuration deploys an Azure Application Gateway with a backend pool that includes a Linux Web App.
 
 ### Inputs
 
@@ -126,9 +141,11 @@ It will deploy an Azure Application Gateway with a backend pool that includes a 
 
 ### Outputs
 
-| Name                                       | Description                                  | Type           |
-|--------------------------------------------|----------------------------------------------|----------------|
-| applicaiton_gateway_ip                          | Ip address of Application Gateway       | string         |
+| Name                                      | Description                                                  | Type   |
+|-------------------------------------------|--------------------------------------------------------------|--------|
+| applicaiton_gateway_ip                    | The IP address of the Application Gateway.                   | string |
+| linux_web_app_default_site_hostname       | The Default Hostname associated with the Linux Web App.     | string |
+| Windows_web_app_default_site_hostname     | The Default Hostname associated with the Windows Web App.   | string | string         |
 
 ## Authors
 
