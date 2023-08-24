@@ -54,9 +54,9 @@ This Terraform configuration deploys an Azure Resource Group
 | resource_group_name | Name of the Resource Group     | string   | "app-service-rg"   | yes      |
 | location            | Location for the Resource Group| string   | "EAST US 2"    | yes      |
 
-## Azure web App
+## Azure App Service
 
-This Terraform configuration deploys an Azure Web App that include linux web app and window web app and it depends on the os_type (linux or window).
+This Terraform configuration deploys an Azure App Service that include linux web app and window web app and it depends on the os_type (linux or window).
 
 ### Inputs
 
@@ -124,7 +124,7 @@ This Terraform configuration deploys an Azure Storage resources for backup purpo
 
 ## Application Gateway with Backend Pool 
 
-This Terraform configuration deploys an Azure Application Gateway with a backend pool that includes a Linux Web App by set create_application_gateway = true.
+This Terraform configuration deploys an Azure Application Gateway with a backend pool that includes a Azure App Service by set create_application_gateway = true.
 
 ### Inputs
 
