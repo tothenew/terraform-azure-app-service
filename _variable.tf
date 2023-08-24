@@ -25,7 +25,7 @@ variable "common_tags" {
 variable "resource_group_name" {
   description = "The name of the Azure Resource Group where the resources will be created."
   type        = string
-  default     ="app-rg"
+  default     = "app-rg"
 }
 
 variable "location" {
@@ -36,13 +36,13 @@ variable "location" {
 
 
 variable "enable_vnet_integration" {
-   type = bool
-   default = false
+  type    = bool
+  default = false
 }
 
 variable "create_resource_group" {
-   type    = bool
-   default = false
+  type    = bool
+  default = false
 }
 
 variable "subnet_id" {
@@ -66,17 +66,17 @@ variable "web_app_name" {
 
 
 variable "app_service_plan_name" {
-  type = string
+  type    = string
   default = "myAppServicePlan"
 }
 
 variable "os_type" {
-  type = string
+  type    = string
   default = "Linux"
 }
 
 variable "sku_name" {
-  type = string
+  type    = string
   default = "P1v2"
 }
 
@@ -89,30 +89,30 @@ variable "public_network_access_enabled" {
 variable "site_config" {
   description = "site settings for App service"
   type = object({
-    always_on                     = bool
-    http2_enabled                 = bool
-    load_balancing_mode           = string
-    managed_pipeline_mode         = string
-    minimum_tls_version           = string
-    remote_debugging_enabled      = bool
-    scm_minimum_tls_version       = string
-    scm_use_main_ip_restriction   = bool
-    vnet_route_all_enabled        = bool
-    websockets_enabled            = optional(bool)
+    always_on                   = bool
+    http2_enabled               = bool
+    load_balancing_mode         = string
+    managed_pipeline_mode       = string
+    minimum_tls_version         = string
+    remote_debugging_enabled    = bool
+    scm_minimum_tls_version     = string
+    scm_use_main_ip_restriction = bool
+    vnet_route_all_enabled      = bool
+    websockets_enabled          = optional(bool)
   })
-  
+
   default = {
-    always_on                       = true
-    http2_enabled                   = false
-    load_balancing_mode             = "LeastRequests"
-    managed_pipeline_mode           = "Integrated"
-    minimum_tls_version             = "1.2"  
-    remote_debugging_enabled        = false  
-    scm_minimum_tls_version         = "1.2"  
-    scm_use_main_ip_restriction     = false                
-    vnet_route_all_enabled          = false
-    websockets_enabled              = false
-  }  
+    always_on                   = true
+    http2_enabled               = false
+    load_balancing_mode         = "LeastRequests"
+    managed_pipeline_mode       = "Integrated"
+    minimum_tls_version         = "1.2"
+    remote_debugging_enabled    = false
+    scm_minimum_tls_version     = "1.2"
+    scm_use_main_ip_restriction = false
+    vnet_route_all_enabled      = false
+    websockets_enabled          = false
+  }
 }
 
 variable "cors" {
@@ -164,7 +164,7 @@ variable "https_only" {
 
 variable "connection_strings" {
   description = "Connection strings for App Service"
-  default = []
+  default     = []
 }
 
 variable "app_settings" {
@@ -185,118 +185,118 @@ variable "create_application_gateway" {
 }
 
 variable "public_ip_name" {
-  type = string
+  type    = string
   default = "app-gateway-public-ip"
 }
 
 variable "public_ip_sku" {
-  type = string
+  type    = string
   default = "Standard"
 }
 
 variable "allocation_method" {
-  type = string
+  type    = string
   default = "Static"
 }
 
 variable "app_gateway_name" {
-  type = string
+  type    = string
   default = "app-service-gateway"
 }
 
 variable "app_gateway_sku_name" {
-  type = string
+  type    = string
   default = "Standard_v2"
 }
 
 variable "app_gateway_sku_tier" {
-  type = string
+  type    = string
   default = "Standard_v2"
 }
 
 variable "app_gateway_sku_capacity" {
-  type = number
+  type    = number
   default = 2
 }
 
 variable "gateway_ip_configuration_name" {
-    type = string
-    default = "my-gateway-ip-configuration"
+  type    = string
+  default = "my-gateway-ip-configuration"
 }
 
 variable "frontend_port" {
-  type = number
+  type    = number
   default = 80
 }
 
 variable "cookie_based_affinity" {
-  type = string
+  type    = string
   default = "Enabled"
 }
 
 variable "path" {
-  type = string
+  type    = string
   default = "/"
 }
 
 variable "port" {
-  type = number
+  type    = number
   default = 80
 }
 
 variable "protocol" {
-  type = string
+  type    = string
   default = "Http"
 }
 
 variable "request_timeout" {
-  type = number
+  type    = number
   default = 60
 }
 
 variable "http_listener_protocol" {
-  type = string
+  type    = string
   default = "Http"
 }
 
 variable "request_routing_rule_type" {
-  type = string
+  type    = string
   default = "Basic"
 }
 
 variable "probe_interval" {
-  type = number
+  type    = number
   default = 30
 }
 
 variable "probe_timeout" {
-  type = number
+  type    = number
   default = 120
 }
 
 variable "probe_unhealthy_threshold" {
-  type = number
+  type    = number
   default = 3
 }
 
 variable "pick_host_name_from_backend_http_settings" {
-  type = bool
+  type    = bool
   default = true
 }
 
 variable "match_body" {
-  type = string
+  type    = string
   default = "Welcome"
-  
+
 }
 
 variable "match_status_code" {
-  type = list(number)
+  type    = list(number)
   default = [200, 399]
- }
+}
 
 variable "pick_host_name_from_backend_address" {
-  type = bool
+  type    = bool
   default = true
 }
 
@@ -316,20 +316,20 @@ variable "enable_backup" {
 variable "backup_settings" {
   description = "Backup settings for App service"
   type = object({
-    name                     = string
-    enabled                  = bool
-    storage_account_url      = optional(string)
-    frequency_interval       = number
-    frequency_unit           = optional(string)
-    retention_period_days    = optional(number)
-    start_time               = optional(string)
+    name                  = string
+    enabled               = bool
+    storage_account_url   = optional(string)
+    frequency_interval    = number
+    frequency_unit        = optional(string)
+    retention_period_days = optional(number)
+    start_time            = optional(string)
   })
   default = {
-    enabled                  = false
-    name                     = "DefaultBackup"
-    frequency_interval       = 1
-    frequency_unit           = "Day"
-    retention_period_days    = 30
+    enabled               = false
+    name                  = "DefaultBackup"
+    frequency_interval    = 1
+    frequency_unit        = "Day"
+    retention_period_days = 30
   }
 }
 
@@ -354,7 +354,7 @@ variable "password_rotation_in_years" {
 
 variable "storage_acc_resource_group_name" {
   description = "name of your existing resource group name where your storage account is"
-  default = "kjnvjnvne_group"
+  default     = "kjnvjnvne_group"
 }
 
 variable "storage_account_name" {
@@ -374,7 +374,7 @@ variable "storage_container_name" {
 
 variable "container_access_type" {
   description = "access type for container"
-  default =   "private"
+  default     = "private"
 }
 
 variable "permissions" {
@@ -388,7 +388,7 @@ variable "permissions" {
     list   = bool
   })
 
-  default ={
+  default = {
     read   = true
     add    = true
     create = true
@@ -396,19 +396,19 @@ variable "permissions" {
     delete = true
     list   = true
 
-  } 
+  }
 }
 
 
 variable "blob_container_sas" {
   description = "content encoding,language and type for SAS token"
-  default ={
-     cache_control       = "max-age=5"
-     content_disposition = "inline"
-     content_encoding    = "deflate"
-     content_language    = "en-US"
-     content_type        = "application/json"
-  } 
+  default = {
+    cache_control       = "max-age=5"
+    content_disposition = "inline"
+    content_encoding    = "deflate"
+    content_language    = "en-US"
+    content_type        = "application/json"
+  }
 }
 
 

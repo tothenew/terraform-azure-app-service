@@ -1,9 +1,15 @@
 # terraform-azure-app-service
 
-[![Lint Status](https://github.com/tothenew/terraform-azure-app-service/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-azure-app-service/actions)
-[![LICENSE](https://img.shields.io/github/license/tothenew/terraform-azure-app-service)](https://github.com/tothenew/terraform-azure-app-service/blob/master/LICENSE)
+[![Lint Status](https://github.com/tothenew/terraform-aws-template/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-aws-template/actions)
+[![LICENSE](https://img.shields.io/github/license/tothenew/terraform-aws-template)](https://github.com/tothenew/terraform-aws-template/blob/master/LICENSE)
 
 This Terraform will deploy a Linux Web App and establishes a virtual network connection to the web app through service endpoint so that the web app is only accessable through application gateway.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_Azure"></a> [azurerm](#provider\_azure) | >3.0 |
 
 ## Prerequisites
 
@@ -30,7 +36,7 @@ Before you begin, ensure you have the following requirements met:
 
 ### Azure Resource Group
 
-This Terraform configuration deploys an Azure Resource Group with specified attributes.
+This Terraform configuration deploys an Azure Resource Group .
 
 ### Inputs
 
@@ -38,13 +44,10 @@ This Terraform configuration deploys an Azure Resource Group with specified attr
 |---------------------|--------------------------------|----------|---------|----------|
 | resource_group_name | Name of the Resource Group     | string   | "app-service-rg"   | yes      |
 | location            | Location for the Resource Group| string   | "EAST US 2"    | yes      |
-| default_tags        | Default tags for resources     | map      |         | yes      |
-| common_tags         | Common tags for resources      | map      |         | yes      |
-
 
 ## Azure web App
 
-This Terraform configuration deploys an Azure Web App .
+This Terraform configuration deploys an Azure Web App that include linux web app and window web app and it depends on the os_type (linux or window).
 
 ### Inputs
 
@@ -76,7 +79,7 @@ This Terraform configuration deploys an Azure Web App .
 
 ## Application Insights
 
-This Terraform configuration deploys an Azure Application Insights resource.
+This Terraform configuration deploys an Azure Application Insights resource by set application_insights_enabled = true.
 
 ### Inputs
 
@@ -93,7 +96,7 @@ This Terraform configuration deploys an Azure Application Insights resource.
 
 ## Azure Storage Backup
 
-This Terraform configuration deploys an Azure Storage resources for backup purposes .
+This Terraform configuration deploys an Azure Storage resources for backup purposes by set enable_backup = true.
 
 ### Inputs
 
@@ -112,7 +115,7 @@ This Terraform configuration deploys an Azure Storage resources for backup purpo
 
 ## Application Gateway with Backend Pool 
 
-This Terraform configuration deploys an Azure Application Gateway with a backend pool that includes a Linux Web App.
+This Terraform configuration deploys an Azure Application Gateway with a backend pool that includes a Linux Web App by set create_application_gateway = true.
 
 ### Inputs
 

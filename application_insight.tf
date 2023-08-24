@@ -13,8 +13,8 @@ resource "azurerm_application_insights" "main" {
   retention_in_days   = var.retention_in_days
   disable_ip_masking  = var.disable_ip_masking
 
-  tags = merge(var.default_tags, var.common_tags , {
-    "Name"        = "${var.project_name_prefix}",
+  tags = merge(var.default_tags, var.common_tags, {
+    "Name" = "${var.project_name_prefix}",
   })
-  
+
 }

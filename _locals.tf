@@ -4,7 +4,7 @@ locals {
   common_tags         = length(var.common_tags) == 0 ? var.default_tags : merge(var.default_tags, var.common_tags)
 
   resource_group_name = element(coalescelist(data.azurerm_resource_group.rg.*.name, azurerm_resource_group.appService-rg.*.name, [""]), 0)
-  
+
   backend_address_pool_name      = "backend-pool-1"
   frontend_port_name             = "frontend-port"
   frontend_ip_configuration_name = "frontedn-ip-1"
