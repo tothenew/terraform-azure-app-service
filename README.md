@@ -36,7 +36,7 @@ Before you begin, ensure you have the following requirements met:
 
 ### Azure Resource Group
 
-This Terraform configuration deploys an Azure Resource Group .
+This Terraform configuration deploys an Azure Resource Group
 
 ### Inputs
 
