@@ -3,7 +3,7 @@
 [![Lint Status](https://github.com/tothenew/terraform-aws-template/workflows/Lint/badge.svg)](https://github.com/tothenew/terraform-aws-template/actions)
 [![LICENSE](https://img.shields.io/github/license/tothenew/terraform-aws-template)](https://github.com/tothenew/terraform-aws-template/blob/master/LICENSE)
 
-This Terraform will deploy a basic and complete azure app service (linux web app and window web app)
+This Terraform will deploy a basic and complete azure app service (linux web app and window web app) and azure app service with application gateway.
 
 The following resources will be created:
  - Resource Group
