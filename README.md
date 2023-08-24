@@ -18,7 +18,7 @@ The following resources will be created:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_Azure"></a> [azurerm](#provider\_azure) | >3.0 |
+| <a name="provider_Azure"></a> [azurerm](#provider\_azure) | >=3.0 |
 
 ## Prerequisites
 
