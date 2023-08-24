@@ -1,5 +1,5 @@
 module "Azure_App_Service" {
-  source = "git::https://github.com/tothenew/terraform-azure-app-service.git?ref=azure-app-service-v1"
+  source = "git::https://github.com/tothenew/terraform-azure-app-service.git"
 
 
   resource_group_name = "app-service-rg"

@@ -205,3 +205,4 @@ resource "azurerm_app_service_virtual_network_swift_connection" "windows_vnet_sw
   app_service_id = azurerm_windows_web_app.web_App.0.id
   subnet_id      = var.subnet_id
 }
+  

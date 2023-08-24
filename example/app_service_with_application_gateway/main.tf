@@ -9,7 +9,7 @@ resource "azurerm_resource_group" "main" {
 }
 
 module "vnet_main" {
-  source = "git::https://github.com/DeepakBoora/terraform-azure-vnet-setup"
+  source = "git::https://github.com/tothenew/terraform-azure-vnet.git"
 
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
@@ -37,7 +37,7 @@ module "vnet_main" {
 
 
 module "Azure_App_Service" {
-  source = "git::https://github.com/tothenew/terraform-azure-app-service.git?ref=azure-app-service-v1"
+  source = "git::https://github.com/tothenew/terraform-azure-app-service.git"
 
   # if you have a existing resources group then set create_resource_group = false and provide the resource group name 
   create_resource_group = true
